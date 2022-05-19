@@ -1,0 +1,14 @@
+/Application/bin
+/Application/obj
+
+/Domain/obj
+/Domain/bin
+
+/Persistence/bin
+/Persistence/obj
+
+/Shared/bin
+/Shared/obj
+
+/WebAPI/bin
+/WebAPI/obj
