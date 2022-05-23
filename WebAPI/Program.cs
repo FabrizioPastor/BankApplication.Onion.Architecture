@@ -1,5 +1,6 @@
 using Application;
 using Persistence;
+using WebAPI.Extnesions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseErrorHalndlingMiddleWare();
 
 app.UseHttpsRedirection();
 
