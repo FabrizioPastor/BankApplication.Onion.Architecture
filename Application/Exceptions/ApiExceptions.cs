@@ -12,7 +12,7 @@ public class ApiExceptions : Exception
     {
     }
 
-    public ApiExceptions(string? message, object[] args) : 
+    public ApiExceptions(string? message,params object[] args) : 
         base(string.Format(CultureInfo.CurrentCulture, message!, args))
     {
     }
