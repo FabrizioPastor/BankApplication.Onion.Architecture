@@ -34,6 +34,8 @@ public class ClienteConfig : IEntityTypeConfiguration<Cliente>
             .HasMaxLength(120)
             .IsRequired();
 
+        builder.Property(p => p.Age);
+
         builder.Property(p => p.CreatedBy)
             .HasMaxLength(30);
 

@@ -11,8 +11,8 @@ public static class ServiceExtension
 {
     public static void AddPersistenceInfraestructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(
-            configuration.GetConnectionString("DefaultConnection"),
+        services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(
+            configuration.GetConnectionString("SqliteConnection"),
             b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)
         ));
 
