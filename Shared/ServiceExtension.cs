@@ -7,8 +7,8 @@ namespace Shared;
 
 public static class ServiceExtension
 {
-    public static void AddSharedInfraestructure(this IServiceCollection service, IConfiguration configuration)
+    public static void AddSharedInfraestructure(this IServiceCollection services, IConfiguration configuration)
     {
-        service.AddTransient<IDateTimeService, DateTimeService>();
+        services.AddTransient<IDateTimeService, DateTimeService>();
     }
 }

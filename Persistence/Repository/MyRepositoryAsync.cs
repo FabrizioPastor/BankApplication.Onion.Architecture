@@ -1,7 +1,5 @@
 using Application.Interface;
-using Ardalis.Specification;
 using Ardalis.Specification.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
 
 namespace Persistence.Repository;
