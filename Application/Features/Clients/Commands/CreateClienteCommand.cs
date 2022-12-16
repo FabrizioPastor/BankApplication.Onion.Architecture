@@ -1,4 +1,7 @@
+using Application.Interface;
 using Application.Wrappers;
+using AutoMapper;
+using Domain.Entities;
 using FluentValidation;
 using MediatR;
 
@@ -16,8 +19,18 @@ public class CreateClienteCommand : IRequest<Response<int>>
 
 public class CreateClienteCommandHandler : IRequestHandler<CreateClienteCommand, Response<int>>
 {
+    public CreateClienteCommandHandler(IRepositoryAsync<Cliente> repositoryAsync, IMapper mapper)
+    {
+        _repositoryAsync = repositoryAsync;
+        _mapper = mapper;
+    }
+
+    private readonly IRepositoryAsync<Cliente> _repositoryAsync;
+    private readonly IMapper _mapper;
     public async Task<Response<int>> Handle(CreateClienteCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var nuevoRegistro = _mapper.Map<Cliente>(request);
+        var data = await _repositoryAsync.AddAsync(nuevoRegistro, cancellationToken);
+        return new Response<int>(data.Id);
     }
 }
