@@ -2,19 +2,18 @@ using Application.Interface;
 using Application.Wrappers;
 using AutoMapper;
 using Domain.Entities;
-using FluentValidation;
 using MediatR;
 
-namespace Application.Features.Clients.Commands;
+namespace Application.Features.Clients.Commands.CreateClienteCommand;
 
 public class CreateClienteCommand : IRequest<Response<int>>
 {
-    public string? Name { get; set; }
-    public string? LastName { get; set; }
-    public DateTime BirthDay { get; set; }
-    public string? PhoneNumber { get; set; }
-    public string? Email { get; set; }
-    public string? Direction { get; set; }
+    public string? Name { get; set; } = default;
+    public string? LastName { get; set; }  = default;
+    public DateTime BirthDay { get; set; }  = default;
+    public string? PhoneNumber { get; set; }  = default;
+    public string? Email { get; set; }  = default;
+    public string? Direction { get; set; }  = default;
 }
 
 public class CreateClienteCommandHandler : IRequestHandler<CreateClienteCommand, Response<int>>
@@ -30,7 +29,17 @@ public class CreateClienteCommandHandler : IRequestHandler<CreateClienteCommand,
     public async Task<Response<int>> Handle(CreateClienteCommand request, CancellationToken cancellationToken)
     {
         var nuevoRegistro = _mapper.Map<Cliente>(request);
-        var data = await _repositoryAsync.AddAsync(nuevoRegistro, cancellationToken);
+        Cliente data;
+        try
+        {
+            data = await _repositoryAsync.AddAsync(nuevoRegistro, cancellationToken);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
         return new Response<int>(data.Id);
     }
 }

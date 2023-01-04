@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Application.Features.Clients.Commands;
 
-public class CreateClienteCommandValidator: AbstractValidator<CreateClienteCommand>
+public class CreateClienteCommandValidator: AbstractValidator<CreateClienteCommand.CreateClienteCommand>
 {
     public CreateClienteCommandValidator()
     {
